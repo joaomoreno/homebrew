@@ -32,10 +32,11 @@ class Ffmpeg < Formula
     args << "--enable-libvpx" if Formula.factory('libvpx').installed?
     args << "--enable-libxvid" if Formula.factory('xvid').installed?
 
-    # Enable alternate compilers
-    args << "--cc=clang" if ENV.use_clang?
-    args << "--cc=llvm-gcc" if ENV.use_llvm?
-    args << "--cc=gcc" if ENV.use_gcc?
+    # Alternative compilers are not supported on 0.8. Only clang works.
+    # See https://github.com/mxcl/homebrew/issues/6278#issuecomment-1705586
+    args << "--cc=clang" # if ENV.use_clang?
+    # args << "--cc=llvm-gcc" if ENV.use_llvm?
+    # args << "--cc=gcc" if ENV.use_gcc?
 
     # For 32-bit compilation under gcc 4.2, see:
     # http://trac.macports.org/ticket/20938#comment:22
